@@ -1,0 +1,25 @@
+.game-card {
+    --card-w: 90px;
+    --card-h: calc(var(--card-w) * 1.38);
+    user-select: none;
+    display: inline-block;
+    width: var(--card-w);
+    height: var(--card-h);
+    background-color: whitesmoke;
+    box-shadow: 4px 4px 10px #000000a0;
+    border-radius: var(--universal-border-radius);
+    padding: var(--universal-padding);
+    margin: var(--universal-margin);
+    transform: scale(1);
+    transition: transform .2s
+}
+
+.game-card:active {
+    transform: scale(0.95) !important;
+    transition: transform .2s
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+    transition: transform .1s
+}
