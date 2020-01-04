@@ -1,16 +1,12 @@
 import 'dart:html';
 
-import 'package:react/react_client.dart' as ReactClient;
-import 'package:react/react.dart';
-import 'package:react/react_dom.dart' as ReactDOM;
+import 'package:over_react/over_react.dart';
+import 'package:over_react/react_dom.dart' as ReactDOM;
 
-class AppComponent extends Component2 {
-  render() => h1({}, 'Hello, name');  
-}
+import 'app.dart';
 
 
 void main() {
-  ReactClient.setClientConfiguration();
-  var App = registerComponent2(() => new AppComponent());
-  ReactDOM.render(App({}), querySelector('#react_root'));
+  setClientConfiguration();
+  ReactDOM.render(App()(), querySelector('#react_root'));
 }
