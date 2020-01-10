@@ -11,7 +11,9 @@ part 'card.over_react.g.dart';
 UiFactory<CardProps> Card = _$Card;
 
 @Props()
-class _$CardProps extends UiProps {}
+class _$CardProps extends UiProps {
+  bool hidden;
+}
 
 @State()
 class _$CardState extends UiState {}
@@ -21,7 +23,7 @@ class CardComponent extends UiStatefulComponent2<CardProps, CardState> {
   String suite;
   dynamic power;
 
-  get defaultProps => (newProps());
+  get defaultProps => (newProps()..hidden=false);
 
   get initialState => (newState());
 
@@ -33,18 +35,25 @@ class CardComponent extends UiStatefulComponent2<CardProps, CardState> {
     power = powers.first;
   }
 
-  render() => (Dom.div()
+  render() => props.hidden ? CardHidden() : (Dom.div()
     ..className = 'game-card'
     ..style = {
       'color': [CardType.diamond, CardType.heart].contains(suite) ? '#E81123' : '#000000'
     })(
-    CardIcon(power, suite),
-    (Dom.div()..style = {'font-size': '32px', 'text-align': 'center'})(suite),
-    CardIcon(power, suite, {'transform': 'scale(-1, -1)', 'text-align': 'left'}),
-  );
+      CardIcon(power, suite),
+      (Dom.div()..style = {'fontSize': '32px', 'textAlign': 'center'})(suite),
+      CardIcon(power, suite, {'transform': 'scale(-1, -1)', 'textAlign': 'left'}),
+    );
 }
 
 CardIcon(power, suite, [style]) => (Dom.div()..style=style)(
   (Dom.div()(power)), 
-  (Dom.div()..style = {'font-size': '12px'})(suite)
+  (Dom.div()..style = {'fontSize': '12px'})(suite)
+);
+
+CardHidden() => (Dom.div()..className = 'game-card')(
+  (Dom.img()
+    ..className = 'allign-vertical-center'
+    ..src = 'images/react.svg'
+  )()
 );
